@@ -1,0 +1,10 @@
+**/target
+/target
+
+/.idea
+
+/*.iml
+
+authorization-database.properties
+authorization-liquibase.properties
+
