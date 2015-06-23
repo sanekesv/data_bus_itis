@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @SequenceGenerator(name = "user_gen", sequenceName = "users_seq")
 @Table(name = "users")
-public class User {
+public class User{
 
     @Id
     @Column(name = "id")
@@ -18,10 +18,8 @@ public class User {
     @Column(name = "name")
     private String login;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "role")
     private RoleEnum role;
 
     public Long getId() {

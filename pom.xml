@@ -109,6 +109,7 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
             </dependency>
+
             <!-- HIBERNATE -->
             <dependency>
                 <groupId>org.hibernate</groupId>

@@ -15,8 +15,8 @@ import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 
 @Configuration
-@ComponentScan(basePackages = {"model"})
-@EnableJpaRepositories(basePackages = {"repository"})
+@ComponentScan(basePackages = {"ru.kpfu.itis.model"})
+@EnableJpaRepositories(basePackages = {"ru.kpfu.itis.repository"})
 @EnableTransactionManagement
 public class PersistenceConfig {
 
@@ -34,7 +34,7 @@ public class PersistenceConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("model");
+        factory.setPackagesToScan("ru.kpfu.itis.model");
         factory.setDataSource(dataSource);
         factory.afterPropertiesSet();
 

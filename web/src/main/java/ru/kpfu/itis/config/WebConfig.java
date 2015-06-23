@@ -1,5 +1,6 @@
 package ru.kpfu.itis.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"controller"})
+@ComponentScan(basePackages = {"ru.kpfu.itis.controller"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -27,5 +28,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setViewClass(JstlView.class);
 
         return resolver;
+    }
+
+    @Bean
+    public String getBean(ObjectMapper mapper) {
+        return "";
     }
 }
