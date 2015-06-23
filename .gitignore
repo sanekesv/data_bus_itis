@@ -7,5 +7,4 @@
 /**/*.iml
 
 model/src/main/resources/database.properties
-model/src/main/resources/liquibase.properties
 

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        logicalFilePath="initial-schema.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="sanekesv">
+        <createTable tableName="users">
+            <column name="id" type="bigint" defaultValueSequenceNext="users_seq">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(255)"/>
+        </createTable>
+        <addUniqueConstraint tableName="users" columnNames="name"/>
+    </changeSet>
+</databaseChangeLog>
