@@ -4,7 +4,8 @@
 /.idea
 
 /*.iml
+/**/*.iml
 
-authorization-database.properties
-authorization-liquibase.properties
+model/src/main/resources/database.properties
+model/src/main/resources/liquibase.properties
 
