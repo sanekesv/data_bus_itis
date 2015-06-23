@@ -102,7 +102,7 @@
                     <webResources>
                         <resource>
                             <!-- this is relative to the pom.xml directory -->
-                            <directory>../happy-student-model/src/main/resources</directory>
+                            <directory>../model/src/main/resources</directory>
                             <directory>src/main/resources</directory>
                         </resource>
                     </webResources>
