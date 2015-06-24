@@ -14,7 +14,9 @@ import org.springframework.security.config.annotation.authentication.configurers
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ru.kpfu.itis.auth.AuthenticationFilter;
 import ru.kpfu.itis.auth.TokenAuthenticationProvider;
@@ -34,18 +36,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        AuthenticationEntryPoint unauthorizedEntryPoint = unauthorizedEntryPoint(mapper);
+        http.
+                csrf().disable().
+                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
+                and().
+                authorizeRequests().
+                antMatchers("/api/*").permitAll().
+                antMatchers("/registration").permitAll().
+                antMatchers("/api/v1/admin/**").hasAnyRole("ADMIN").
+                antMatchers("/api/v1/**").hasAnyRole("STUDENT", "ADMIN").
+                and().
+                exceptionHandling()
+                .authenticationEntryPoint(unauthorizedEntryPoint)
+                .accessDeniedHandler((AccessDeniedHandler) unauthorizedEntryPoint);
 
-        http.authorizeRequests().antMatchers("/**").authenticated();
-
-        http
-                .formLogin()
-                .failureUrl("/login?error=true")
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout().logoutUrl("/logout")
-                .permitAll();
         http.addFilterBefore(new AuthenticationFilter(authenticationManager(), mapper), BasicAuthenticationFilter.class);
     }
 

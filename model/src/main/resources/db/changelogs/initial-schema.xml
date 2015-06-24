@@ -16,7 +16,7 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="role" type="varchar(255)"/>
+            <column name="role" type="int"/>
         </createTable>
         <addUniqueConstraint tableName="users" columnNames="name"/>
     </changeSet>

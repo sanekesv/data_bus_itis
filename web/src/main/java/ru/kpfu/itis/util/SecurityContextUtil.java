@@ -8,9 +8,6 @@ import ru.kpfu.itis.model.User;
 
 import java.util.Collection;
 
-/**
- * Created on 31.08.2014.
- */
 public class SecurityContextUtil {
 
     public static User getCurrentUser() {
