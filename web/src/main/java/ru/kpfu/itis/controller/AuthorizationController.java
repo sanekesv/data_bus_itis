@@ -1,18 +1,17 @@
 package ru.kpfu.itis.controller;
 
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.service.UserService;
-import ru.kpfu.itis.util.SecurityContextUtil;
-
-import java.util.UUID;
 
 @Controller
+@Api(value = "Login", description = "Token login based on username and password")
+@RequestMapping(value = "api")
 public class AuthorizationController {
 
     @Autowired
@@ -23,18 +22,9 @@ public class AuthorizationController {
         return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String Authenticated(@RequestParam(value = "error", required = false) String error,
-                                ModelMap map) {
-        System.out.println(error);
-        User user = SecurityContextUtil.getCurrentUser();
-
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid.toString());
-        if (user != null) {
-            return "index";
-        } else {
-            return "login";
-        }
+    @ApiOperation(httpMethod = "POST", value = "Proxy method for auth: really we use POST to /login. be careful")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String Authenticated(@RequestParam String username, @RequestParam String password) {
+        return null;
     }
 }
