@@ -17,11 +17,6 @@ public class AuthorizationController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String HelloWorld() {
-        return "index";
-    }
-
     @ApiOperation(httpMethod = "POST", value = "Proxy method for auth: really we use POST to /login. be careful")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String Authenticated(@RequestParam String username, @RequestParam String password) {

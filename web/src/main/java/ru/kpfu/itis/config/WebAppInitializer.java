@@ -15,7 +15,7 @@ public class WebAppInitializer extends
     //{!begin addToRootContext}
     @Override
     public Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{WebSecurityConfig.class, DataSourceConfig.class, PersistenceConfig.class, CoreConfig.class};
+        return new Class<?>[]{WebSecurityConfig.class, DataSourceConfig.class, SpringMongoConfig.class, PersistenceConfig.class, CoreConfig.class};
     }
     //{!end addToRootContext}
 
