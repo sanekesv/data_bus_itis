@@ -1,13 +1,11 @@
 package ru.kpfu.itis.auth;
 
-import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Element;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.codec.Base64;
+import ru.kpfu.itis.service.TokenServiceMongo;
+import ru.kpfu.itis.token.Token;
 
 import javax.annotation.PreDestroy;
 import java.util.Date;
@@ -17,14 +15,17 @@ public class TokenService {
 
     //an 3 days
     public static final long TOKEN_LIVE_TIME = 24 * 3 * 60 * 60 * 1000l;
-    private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
-    private static final Cache restApiAuthTokenCache = CacheManager.getInstance().getCache("restApiAuthTokenCache");
+    //private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
+   // private static final Cache restApiAuthTokenCache = CacheManager.getInstance().getCache("restApiAuthTokenCache");
 
-    @Scheduled(fixedRate = TOKEN_LIVE_TIME)
-    public void evictExpiredTokens() {
-        logger.info("Evicting expired tokens");
-        restApiAuthTokenCache.evictExpiredElements();
-    }
+    @Autowired
+    private TokenServiceMongo tokenService;
+
+//    @Scheduled(fixedRate = TOKEN_LIVE_TIME)
+//    public void evictExpiredTokens() {
+//        logger.info("Evicting expired tokens");
+//        restApiAuthTokenCache.evictExpiredElements();
+//    }
 
     public String generateNewToken() {
         String token = UUID.randomUUID().toString();
@@ -34,15 +35,16 @@ public class TokenService {
     }
 
     public void store(String token, Authentication authentication) {
-        restApiAuthTokenCache.put(new Element(token, authentication));
+        tokenService.saveToken(new Token(token, authentication));
+        //restApiAuthTokenCache.put(new Element(token, authentication));
     }
 
     public boolean contains(String token) {
-        return restApiAuthTokenCache.get(token) != null;
+        return tokenService.findTokenByToken(token) != null;
     }
 
     public Authentication retrieve(String token) {
-        return (Authentication) restApiAuthTokenCache.get(token).getObjectValue();
+        return tokenService.findTokenByToken(token).getAuthentication();
     }
 
     public boolean isTokenValid(String token) {

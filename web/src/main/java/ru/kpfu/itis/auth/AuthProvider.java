@@ -58,7 +58,7 @@ public class AuthProvider implements AuthenticationProvider {
             SecurityContextHolder.getContext().setAuthentication(authToken);
 
             //TODO: tokenService
-//            tokenService.store(newToken, authToken);
+            tokenService.store(newToken, authToken);
             return authToken;
         } else {
             throw new BadCredentialsException("Bad user password");
