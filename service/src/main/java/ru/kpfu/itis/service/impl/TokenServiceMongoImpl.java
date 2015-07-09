@@ -27,13 +27,17 @@ public class TokenServiceMongoImpl implements TokenServiceMongo {
     @Override
     public void saveToken(Token token) {
         mongoOperations.save(token);
-        Query query = new Query(Criteria.where("value").is(token.getValue()));
-        Token savedToken = mongoOperations.findOne(query, Token.class);
-        System.out.println(savedToken.getValue());
     }
 
     @Override
-    public void deleteToken(Token token) {
-        mongoOperations.remove(token);
+    public void removeToken(String token) {
+        Query query = new Query(Criteria.where("value").is(token));
+        mongoOperations.remove(query, Token.class);
+    }
+
+    @Override
+    public void removeDocumentsSeniorLiveTime(long l) {
+        Query query = new Query(Criteria.where("liveTime").lt(l));
+        mongoOperations.remove(query, Token.class);
     }
 }

@@ -2,6 +2,7 @@ package ru.kpfu.itis.auth;
 
 import net.sf.ehcache.CacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.codec.Base64;
 import ru.kpfu.itis.service.TokenServiceMongo;
@@ -21,11 +22,10 @@ public class TokenService {
     @Autowired
     private TokenServiceMongo tokenService;
 
-//    @Scheduled(fixedRate = TOKEN_LIVE_TIME)
-//    public void evictExpiredTokens() {
-//        logger.info("Evicting expired tokens");
-//        restApiAuthTokenCache.evictExpiredElements();
-//    }
+    @Scheduled(fixedRate = TOKEN_LIVE_TIME)
+    public void evictExpiredTokens() {
+        tokenService.removeDocumentsSeniorLiveTime(new Date().getTime() - TOKEN_LIVE_TIME);
+    }
 
     public String generateNewToken() {
         String token = UUID.randomUUID().toString();
@@ -35,7 +35,7 @@ public class TokenService {
     }
 
     public void store(String token, Authentication authentication) {
-        tokenService.saveToken(new Token(token, authentication));
+        tokenService.saveToken(new Token(token, authentication, new Date().getTime()));
         //restApiAuthTokenCache.put(new Element(token, authentication));
     }
 
@@ -65,7 +65,10 @@ public class TokenService {
         String decodedToken = new String(Base64.decode(token.getBytes()));
         String[] parts = decodedToken.split(":");
         long tokenGenTime = Long.valueOf(parts[1]);
-        return new Date().getTime() - tokenGenTime > TOKEN_LIVE_TIME;
+        boolean b = new Date().getTime() - tokenGenTime > TOKEN_LIVE_TIME;
+        if(b)
+            tokenService.removeToken(token);
+        return b;
     }
 
     @PreDestroy

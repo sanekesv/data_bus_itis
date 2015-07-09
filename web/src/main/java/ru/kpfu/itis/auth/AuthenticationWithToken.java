@@ -14,6 +14,10 @@ public class AuthenticationWithToken extends PreAuthenticatedAuthenticationToken
         super(aPrincipal, aCredentials, anAuthorities);
     }
 
+    public AuthenticationWithToken() {
+        super(null, null);
+    }
+
     public void setToken(String token) {
         setDetails(token);
     }

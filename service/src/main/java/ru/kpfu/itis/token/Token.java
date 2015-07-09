@@ -12,6 +12,8 @@ public class Token {
 
     private Authentication authentication;
 
+    private Long liveTime;
+
     public String getValue() {
         return value;
     }
@@ -23,13 +25,22 @@ public class Token {
     public Authentication getAuthentication() {
         return authentication;
     }
-//
+
     public void setAuthentication(Authentication authentication) {
         this.authentication = authentication;
     }
 
-    public Token(String value, Authentication authentication) {
+    public Long getLiveTime() {
+        return liveTime;
+    }
+
+    public void setLiveTime(Long liveTime) {
+        this.liveTime = liveTime;
+    }
+
+    public Token(String value, Authentication authentication, Long liveTime) {
         this.value = value;
         this.authentication = authentication;
+        this.liveTime = liveTime;
     }
 }

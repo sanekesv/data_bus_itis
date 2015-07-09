@@ -13,5 +13,7 @@ public interface TokenServiceMongo {
 
     void saveToken(Token token);
 
-    void deleteToken(Token token);
+    void removeToken(String token);
+
+    void removeDocumentsSeniorLiveTime(long l);
 }
