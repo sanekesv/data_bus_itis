@@ -75,7 +75,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             if (token != null) {
                 logger.debug("Trying to authenticate user by X-Auth-Token method. Token: {}", token);
                 try {
-                    processTokenAuthentication(token);
+                    processTokenAuthentication(httpResponse, token);
                 } catch (BadCredentialsException e) {
                     notifyBadTokenException(httpResponse);
                     return;
@@ -83,6 +83,7 @@ public class AuthenticationFilter extends GenericFilterBean {
                     notifyCredentialsExpired(httpResponse);
                     return;
                 }
+                return;
             }
 
             logger.debug("AuthenticationFilter is passing request down the filter chain");
@@ -161,9 +162,10 @@ public class AuthenticationFilter extends GenericFilterBean {
         return tryToAuthenticate(requestAuthentication);
     }
 
-    private void processTokenAuthentication(String token) {
+    private void processTokenAuthentication(HttpServletResponse httpResponse, String token) {
         Authentication resultOfAuthentication = tryToAuthenticateWithToken(token);
         SecurityContextHolder.getContext().setAuthentication(resultOfAuthentication);
+        WebUtil.objToResponse(new String("Successfully"), httpResponse, HttpServletResponse.SC_OK, msgMapper);
     }
 
     private Authentication tryToAuthenticateWithToken(String token) {
