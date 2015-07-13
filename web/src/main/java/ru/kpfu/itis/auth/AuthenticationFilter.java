@@ -83,7 +83,6 @@ public class AuthenticationFilter extends GenericFilterBean {
                     notifyCredentialsExpired(httpResponse);
                     return;
                 }
-                return;
             }
 
             logger.debug("AuthenticationFilter is passing request down the filter chain");
