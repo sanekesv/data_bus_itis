@@ -155,9 +155,9 @@
                                 <id>default-cli</id>
                                 <phase>process-resources</phase>
                                 <configuration>
-                                    <changeLogFile>${basedir}\src\main\resources\db\changelog.xml</changeLogFile>
+                                    <changeLogFile>${basedir}/src/main/resources/db/changelog.xml</changeLogFile>
                                     <propertyFileWillOverride>true</propertyFileWillOverride>
-                                    <propertyFile>${basedir}\src\main\resources\liquibase.properties
+                                    <propertyFile>${basedir}/src/main/resources/liquibase.properties
                                     </propertyFile>
                                 </configuration>
                                 <goals>

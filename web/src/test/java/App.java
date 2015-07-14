@@ -3,8 +3,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import ru.kpfu.itis.config.SpringMongoConfig;
-import ru.kpfu.itis.token.Token;
+import ru.kpfu.jbl.auth.config.SpringMongoConfig;
+import ru.kpfu.jbl.auth.domain.Token;
 
 public class App {
     public static void main(String[] args) {
