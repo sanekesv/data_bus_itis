@@ -3,6 +3,7 @@ package ru.kpfu.itis.model;
 
 import ru.kpfu.itis.model.enums.GenderEnum;
 import ru.kpfu.itis.model.enums.RoleEnum;
+import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.jbl.auth.domain.AuthUser;
 
 import javax.persistence.*;
@@ -18,7 +19,6 @@ public class User implements AuthUser {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
     private Long id;
 
-    @Column(name = "name")
     private String login;
 
     private String password;
@@ -27,17 +27,12 @@ public class User implements AuthUser {
 
     private String salt;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "middle_name")
-    private String middleName;
+    private String name;
 
     @Column(name = "academic_group")
-    private String group;
+    private String academicGroup;
+
+    private UserGroup group;
 
     private Date birthDay;
 
@@ -89,35 +84,27 @@ public class User implements AuthUser {
         this.salt = salt;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getAcademicGroup() {
+        return academicGroup;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAcademicGroup(String academicGroup) {
+        this.academicGroup = academicGroup;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getGroup() {
+    public UserGroup getGroup() {
         return group;
     }
 
-    public void setGroup(String group) {
+    public void setGroup(UserGroup group) {
         this.group = group;
     }
 
