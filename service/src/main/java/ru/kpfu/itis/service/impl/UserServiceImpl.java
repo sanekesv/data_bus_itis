@@ -8,6 +8,8 @@ import ru.kpfu.itis.model.form.RegistrationForm;
 import ru.kpfu.itis.repository.UserRepository;
 import ru.kpfu.itis.service.UserService;
 import ru.kpfu.itis.util.FormMappers;
+import ru.kpfu.jbl.auth.domain.AuthUser;
+import ru.kpfu.jbl.auth.response.UserResponse;
 
 
 @Service("UserService")
@@ -20,6 +22,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByLogin(String login) {
         return userRepository.findOneByLogin(login);
+    }
+
+    @Override
+    public AuthUser saveUser(UserResponse userResponse) {
+        //not implemented here: because of server
+        return null;
     }
 
     @Override

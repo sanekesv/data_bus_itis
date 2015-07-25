@@ -3,12 +3,7 @@ package ru.kpfu.itis.service.impl;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +13,8 @@ import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.itis.repository.UserRepository;
 import ru.kpfu.itis.service.XlsService;
 import ru.kpfu.itis.util.CommonUtil;
-import ru.kpfu.itis.util.PasswordHelper;
 import ru.kpfu.itis.util.XlsUtil;
+import ru.kpfu.jbl.auth.util.PasswordHelper;
 
 import java.util.*;
 

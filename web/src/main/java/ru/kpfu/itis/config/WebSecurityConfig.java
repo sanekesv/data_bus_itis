@@ -17,9 +17,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ru.kpfu.jbl.auth.AuthenticationFilter;
-import ru.kpfu.jbl.auth.config.AuthSecurityModuleConfig;
-import ru.kpfu.jbl.auth.config.MongoTokenServiceConfig;
-import ru.kpfu.jbl.auth.config.SpringMongoConfig;
+import ru.kpfu.jbl.auth.config.*;
 import ru.kpfu.jbl.auth.ep.RestAuthenticationEntryPoint;
 
 @Configuration
@@ -28,7 +26,7 @@ import ru.kpfu.jbl.auth.ep.RestAuthenticationEntryPoint;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    @Qualifier("domainAuthProvider")
+    @Qualifier("md5LoginAuthProvider")
     private AuthenticationProvider authenticationProvider;
 
     @Autowired
