@@ -13,5 +13,8 @@
 
     <include file="changelogs/users-changelog.xml"
              relativeToChangelogFile="true"/>
+    <include relativeToChangelogFile="true"
+             file="changelog_v1.1/changelog_v1.1.xml" />
+
 
 </databaseChangeLog>

@@ -32,11 +32,13 @@ public class User implements AuthUser {
     @Column(name = "academic_group")
     private String academicGroup;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_group")
     private UserGroup group;
 
-    private Date birthDay;
-
     private GenderEnum gender;
+
+    private Long entranceYear;
 
     public Long getId() {
         return id;
@@ -100,20 +102,13 @@ public class User implements AuthUser {
         this.academicGroup = academicGroup;
     }
 
+    @Transient
     public UserGroup getGroup() {
         return group;
     }
 
     public void setGroup(UserGroup group) {
         this.group = group;
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
     }
 
     @Transient
@@ -123,5 +118,13 @@ public class User implements AuthUser {
 
     public void setGender(GenderEnum gender) {
         this.gender = gender;
+    }
+
+    public Long getEntranceYear() {
+        return entranceYear;
+    }
+
+    public void setEntranceYear(Long entranceYear) {
+        this.entranceYear = entranceYear;
     }
 }

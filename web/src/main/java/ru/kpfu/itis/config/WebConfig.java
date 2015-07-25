@@ -86,8 +86,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-
+        registry.addResourceHandler("/resources/**").
+                addResourceLocations("/WEB-INF/resources/")
+                .setCachePeriod(86400);
         /*
         *   swagger UI resources
         * */

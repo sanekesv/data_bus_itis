@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="
+                       http://www.liquibase.org/xml/ns/dbchangelog
+                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20150725_1150" author="sanekesv">
+        <addColumn tableName="users">
+            <column name="login" type="VARCHAR(255)"/>
+            <column name="salt" type="VARCHAR(255)"/>
+            <column name="academic_group" type="VARCHAR(255)"/>
+            <column name="user_group" type="VARCHAR(255)"/>
+            <column name="gender" type="int"/>
+            <column name="entrance_year" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
