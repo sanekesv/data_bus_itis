@@ -24,7 +24,9 @@ public class UserController {
     public UserResponse getCurrentUser(@RequestParam(required = true) String token) {
         User user = (User) tokenService.retrieve(token).getPrincipal();
         UserResponse userDto = new UserResponse();
-        userDto.setName(user.getLogin());
+        userDto.setLogin(user.getLogin());
+        userDto.setRole(user.getGroup().toString());
+        userDto.setName(user.getName());
         userDto.setFaculty(null);
         userDto.setId(user.getId());
         return userDto;
