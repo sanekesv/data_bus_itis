@@ -9,6 +9,7 @@
     <include relativeToChangelogFile="true" file="20150725_1515.xml" />
     <include relativeToChangelogFile="true" file="20150725_1616.xml" />
     <include relativeToChangelogFile="true" file="20150725_1916.xml" />
+    <include relativeToChangelogFile="true" file="20150728_1200.xml" />
 
 
 </databaseChangeLog>

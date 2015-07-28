@@ -7,7 +7,6 @@ import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.jbl.auth.domain.AuthUser;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @SequenceGenerator(name = "user_gen", sequenceName = "users_seq")
@@ -32,12 +31,13 @@ public class User implements AuthUser {
     @Column(name = "academic_group")
     private String academicGroup;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "user_group")
     private UserGroup group;
 
     private GenderEnum gender;
 
+    @Column(name = "entrance_year")
     private Long entranceYear;
 
     public Long getId() {
@@ -63,7 +63,7 @@ public class User implements AuthUser {
     @Override
     @Transient
     public String getUserRole() {
-        return role == null ? null : role.name();
+        return group == null ? null : group.name();
     }
 
     public void setPassword(String password) {
