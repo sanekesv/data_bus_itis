@@ -20,9 +20,8 @@ public class UserController {
     private TokenService tokenService;
 
     @RequestMapping(value = "/current", method = RequestMethod.GET)
-    @ApiImplicitParams(value = {@ApiImplicitParam(name = "token", value = "token", required = true, dataType = "string", paramType = "query")})
     @ApiOperation(httpMethod = "GET", value = "user")
-    public UserResponse getCurrentUser(@RequestParam String token) {
+    public UserResponse getCurrentUser(@RequestParam(required = true) String token) {
         User user = (User) tokenService.retrieve(token).getPrincipal();
         UserResponse userDto = new UserResponse();
         userDto.setName(user.getLogin());
