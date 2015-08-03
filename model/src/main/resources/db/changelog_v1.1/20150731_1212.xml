@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="
+                       http://www.liquibase.org/xml/ns/dbchangelog
+                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="sanekesv" id="modifyDataType-academic_group">
+        <dropColumn columnName="academic_group"
+                    schemaName="public"
+                    tableName="users"/>
+    </changeSet>
+
+    <changeSet id="add_column_group" author="sanekesv">
+        <addColumn tableName="users">
+            <column name="academic_group" type="bigint"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20150725_1212_add_groups" author="sanekesv" runOnChange="true">
+        <loadUpdateData tableName="users"
+                        primaryKey="ID"
+                        file="db/changelog_v1.1/csv/GroupIds.csv"
+                        quotchar="'"/>
+    </changeSet>
+
+    <changeSet author="sanekesv" id="seq_group">
+        <createSequence
+                incrementBy="1"
+                minValue="1"
+                schemaName="public"
+                sequenceName="group_seq"
+                startValue="150"/>
+    </changeSet>
+
+    <changeSet id="table_group" author="sanekesv">
+        <createTable tableName="groups">
+            <column name="id" type="bigint" defaultValueSequenceNext="group_seq">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+        <addUniqueConstraint tableName="users" columnNames="name"/>
+    </changeSet>
+
+
+    <changeSet id="20150725_1212_add_group_table" author="sanekesv" runOnChange="true">
+        <loadUpdateData tableName="groups"
+                        primaryKey="ID"
+                        file="db/changelog_v1.1/csv/Group.csv"
+                        quotchar="'"/>
+    </changeSet>
+
+    <changeSet id="fk_group" author="sanekesv">
+        <addForeignKeyConstraint baseTableName="users"
+                                 baseColumnNames="academic_group"
+                                 constraintName="fk_academic_group"
+                                 referencedTableName="groups"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+
+</databaseChangeLog>

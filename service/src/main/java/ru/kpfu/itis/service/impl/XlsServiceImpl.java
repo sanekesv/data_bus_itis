@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.enums.UserGroup;
+import ru.kpfu.itis.repository.GroupRepository;
 import ru.kpfu.itis.repository.UserRepository;
 import ru.kpfu.itis.service.XlsService;
 import ru.kpfu.itis.util.CommonUtil;
@@ -24,6 +26,8 @@ public class XlsServiceImpl implements XlsService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    GroupRepository groupRepository;
 
     @Transactional
     @Override
@@ -51,7 +55,13 @@ public class XlsServiceImpl implements XlsService {
                 }
                 User user = new User();
                 user.setName(name);
-                user.setAcademicGroup(group);
+                AcademicGroup findAcademicGroup = groupRepository.findOneByTitle(group);
+                if(findAcademicGroup ==null) {
+                    AcademicGroup savingAcademicGroup = new AcademicGroup();
+                    savingAcademicGroup.setTitle(group);
+                    findAcademicGroup = groupRepository.save(savingAcademicGroup);
+                }
+                user.setAcademicGroup(findAcademicGroup);
                 try {
                     user.setEntranceYear(Long.valueOf(year));
                 } catch (Exception e) {//ignored

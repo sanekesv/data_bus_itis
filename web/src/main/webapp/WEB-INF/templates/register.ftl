@@ -28,7 +28,7 @@
 
                     <p><@form.errors path="academicGroup"/></p>
 
-                    <p><@form.input path="academicGroup" id="group"  autocomplete="off" placeholder="Группа" cssClass="form-control"/></p>
+                    <p><@form.input path="academicGroup" id="academicGroup"  autocomplete="off" placeholder="Группа" cssClass="form-control"/></p>
 
 
                     <p>Ваш пароль</p>
@@ -38,7 +38,7 @@
                     <p><@form.password path="password" id="password" autocomplete="off" cssClass="form-control"/></p>
 
 
-                    <div class="form-group">
+                    <div class="form-academicGroup">
 
                             <button id="submit" name="submit" class="edit_action">Зарегистрироваться</button>
 

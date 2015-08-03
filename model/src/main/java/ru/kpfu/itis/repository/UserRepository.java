@@ -3,6 +3,7 @@ package ru.kpfu.itis.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
 
 import java.util.List;
