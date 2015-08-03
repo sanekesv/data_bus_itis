@@ -1,9 +1,12 @@
 package ru.kpfu.itis.service;
 
 import org.springframework.stereotype.Service;
+import ru.kpfu.itis.dto.UserDto;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.form.RegistrationForm;
 import ru.kpfu.jbl.auth.service.UserServiceAuth;
+
+import java.util.List;
 
 @Service
 public interface UserService extends UserServiceAuth {
@@ -15,4 +18,6 @@ public interface UserService extends UserServiceAuth {
     User findUser(String login);
 
     Long register(RegistrationForm registrationForm);
+
+    List<UserDto> findUsersByGroup(String group);
 }

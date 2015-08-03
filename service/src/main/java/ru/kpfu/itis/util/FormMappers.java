@@ -16,7 +16,6 @@ public class FormMappers {
         user.setSalt(PasswordHelper.generateSalt());
         user.setPassword(PasswordHelper.encrypt(form.getPassword(), user.getSalt()));
         user.setGroup(UserGroup.STUDENT);
-        user.setAcademicGroup(form.getAcademicGroup());
         return user;
     }
 }
