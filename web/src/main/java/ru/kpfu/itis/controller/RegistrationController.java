@@ -1,5 +1,6 @@
 package ru.kpfu.itis.controller;
 
+import com.mangofactory.swagger.annotations.ApiIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +16,7 @@ import ru.kpfu.itis.service.UserService;
 import ru.kpfu.itis.service.XlsService;
 import ru.kpfu.itis.util.XlsUtil;
 
+@ApiIgnore
 @Controller
 @RequestMapping(value = "register")
 public class RegistrationController {

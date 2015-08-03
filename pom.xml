@@ -37,6 +37,21 @@
 
     <name>authorization</name>
 
+    <profiles>
+        <profile>
+            <id>dev-server</id>
+            <properties>
+                <tomcat.home>/home/data_bus_itis/softwares/apache-tomcat-7.0.59/</tomcat.home>
+            </properties>
+        </profile>
+        <profile>
+            <id>data-bus-ainur</id>
+            <properties>
+                <tomcat.home>/Users/ainurminibaev/Documents/Develop/installation/apache-tomcat-7.0.50/</tomcat.home>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

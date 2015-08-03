@@ -31,7 +31,7 @@ public class User implements AuthUser {
     @ManyToOne
     private AcademicGroup academicGroup;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "user_group")
     private UserGroup group;
 
@@ -63,7 +63,7 @@ public class User implements AuthUser {
     @Override
     @Transient
     public String getUserRole() {
-        return role == null ? null : role.name();
+        return group == null ? null : group.name();
     }
 
     public void setPassword(String password) {

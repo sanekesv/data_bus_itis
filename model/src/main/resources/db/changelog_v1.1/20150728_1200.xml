@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="
+                       http://www.liquibase.org/xml/ns/dbchangelog
+                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="aminibaev" id="20150728_1200-change-user_group type">
+        <addColumn tableName="users">
+            <column name="user_group_int" type="int"/>
+        </addColumn>
+        <sql>
+            update users set user_group_int = CAST(user_group as INT);
+        </sql>
+        <dropColumn tableName="users" columnName="user_group"/>
+        <addColumn tableName="users">
+            <column name="user_group" type="int"/>
+        </addColumn>
+        <sql>
+            update users set user_group = user_group_int
+        </sql>
+        <dropColumn tableName="users" columnName="user_group_int"/>
+    </changeSet>
+</databaseChangeLog>
