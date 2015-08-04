@@ -29,6 +29,7 @@ public class User implements AuthUser {
     private String name;
 
     @ManyToOne
+    @JoinColumn(nullable = true, name = "academic_group_id", referencedColumnName = "id")
     private AcademicGroup academicGroup;
 
     @Enumerated(EnumType.ORDINAL)

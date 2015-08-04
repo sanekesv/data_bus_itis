@@ -5,23 +5,10 @@
                        http://www.liquibase.org/xml/ns/dbchangelog
                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
-    <changeSet author="sanekesv" id="modifyDataType-academic_group">
-        <dropColumn columnName="academic_group"
-                    schemaName="public"
-                    tableName="users"/>
-    </changeSet>
-
     <changeSet id="add_column_group" author="sanekesv">
         <addColumn tableName="users">
-            <column name="academic_group" type="bigint"></column>
+            <column name="academic_group_id" type="bigint"/>
         </addColumn>
-    </changeSet>
-
-    <changeSet id="20150725_1212_add_groups" author="sanekesv" runOnChange="true">
-        <loadUpdateData tableName="users"
-                        primaryKey="ID"
-                        file="db/changelog_v1.1/csv/GroupIds.csv"
-                        quotchar="'"/>
     </changeSet>
 
     <changeSet author="sanekesv" id="seq_group">
@@ -40,23 +27,18 @@
             </column>
             <column name="title" type="VARCHAR(255)"/>
         </createTable>
-        <addUniqueConstraint tableName="users" columnNames="name"/>
     </changeSet>
 
+    <changeSet id="20150731_1212_string_to_sql" author="aminibaev" runOnChange="true">
+        <sql>
+            INSERT INTO groups (title)
+            SELECT DISTINCT u.academic_group
+            FROM users u
+            WHERE u.academic_group IS NOT NULL and NOT EXISTS(SELECT id FROm groups g WHERE g.title = u.academic_group);
 
-    <changeSet id="20150725_1212_add_group_table" author="sanekesv" runOnChange="true">
-        <loadUpdateData tableName="groups"
-                        primaryKey="ID"
-                        file="db/changelog_v1.1/csv/Group.csv"
-                        quotchar="'"/>
-    </changeSet>
-
-    <changeSet id="fk_group" author="sanekesv">
-        <addForeignKeyConstraint baseTableName="users"
-                                 baseColumnNames="academic_group"
-                                 constraintName="fk_academic_group"
-                                 referencedTableName="groups"
-                                 referencedColumnNames="id"/>
+            UPDATE users u
+            SET academic_group_id = (SELECT id FROM groups g WHERE u.academic_group = g.title LIMIT 1)
+        </sql>
     </changeSet>
 
 

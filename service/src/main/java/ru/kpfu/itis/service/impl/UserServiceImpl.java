@@ -1,9 +1,9 @@
 package ru.kpfu.itis.service.impl;
 
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kpfu.itis.dto.UserDto;
 import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.enums.RoleEnum;
@@ -12,12 +12,10 @@ import ru.kpfu.itis.model.form.RegistrationForm;
 import ru.kpfu.itis.repository.GroupRepository;
 import ru.kpfu.itis.repository.UserRepository;
 import ru.kpfu.itis.service.UserService;
-import ru.kpfu.itis.util.DtoMappers;
 import ru.kpfu.itis.util.FormMappers;
 import ru.kpfu.jbl.auth.domain.AuthUser;
 import ru.kpfu.jbl.auth.response.UserResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -77,17 +75,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findUsersByGroup(String groupName) {
-        AcademicGroup academicGroup = groupRepository.findOneByTitle(groupName);
-        if(academicGroup==null)
-            return null;
-        int size = academicGroup.getUsers().size();
-        List<User> userList = academicGroup.getUsers();
-        List<UserDto> userDtoList = new ArrayList<>();
-        for(User user : userList){
-            UserDto userDto = DtoMappers.userToUserDto(user);
-            userDtoList.add(userDto);
+    public List<User> findUsersByGroup(String groupName) {
+        AcademicGroup academicGroup = null;
+        try {
+            academicGroup = groupRepository.findOneByTitle(groupName);
+        } catch (Exception ignored) {
         }
-        return userDtoList;
+        if (academicGroup == null) {
+            return null;
+        }
+        return academicGroup.getUsers();
+    }
+
+    @Override
+    public List<AcademicGroup> getAllGroups() {
+        return Lists.newArrayList(groupRepository.findAll());
     }
 }

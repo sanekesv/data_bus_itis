@@ -5,11 +5,20 @@
                        http://www.liquibase.org/xml/ns/dbchangelog
                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
-    <changeSet author="sanekesv" id="renameColumn-academic_group">
-        <renameColumn columnDataType="bigint"
-                      newColumnName="academicgroup_id"
-                      oldColumnName="academic_group"
-                      schemaName="public"
-                      tableName="users"/>
+    <changeSet id="fk_group" author="sanekesv">
+        <addForeignKeyConstraint baseTableName="users"
+                                 baseColumnNames="academic_group_id"
+                                 constraintName="fk_academic_group_id"
+                                 referencedTableName="groups"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="sanekesv" id="modifyDataType-academic_group" runOnChange="true">
+        <!--<dropColumn columnName="academic_group"-->
+        <!--schemaName="public"-->
+        <!--tableName="users"/>-->
+        <sql>
+            SELECT 1;
+        </sql>
     </changeSet>
 </databaseChangeLog>

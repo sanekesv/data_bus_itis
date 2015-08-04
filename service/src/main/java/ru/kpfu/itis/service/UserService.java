@@ -1,9 +1,10 @@
 package ru.kpfu.itis.service;
 
 import org.springframework.stereotype.Service;
-import ru.kpfu.itis.dto.UserDto;
+import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.form.RegistrationForm;
+import ru.kpfu.jbl.auth.response.UserResponse;
 import ru.kpfu.jbl.auth.service.UserServiceAuth;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface UserService extends UserServiceAuth {
 
     Long register(RegistrationForm registrationForm);
 
-    List<UserDto> findUsersByGroup(String group);
+    List<User> findUsersByGroup(String group);
+
+    List<AcademicGroup> getAllGroups();
 }
