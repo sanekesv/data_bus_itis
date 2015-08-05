@@ -96,6 +96,11 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.20</version>
         </dependency>
+        <dependency>
+            <groupId>org.lightadmin</groupId>
+            <artifactId>lightadmin</artifactId>
+            <version>1.0.1.RELEASE</version>
+        </dependency>
 
     </dependencies>
 
@@ -142,6 +147,25 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>lightadmin-nexus-releases</id>
+            <url>http://lightadmin.org/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>lightadmin-nexus-snapshots</id>
+            <url>http://lightadmin.org/nexus/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
 
 </project>

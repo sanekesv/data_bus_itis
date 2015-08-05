@@ -121,6 +121,19 @@
             <version>3.1</version>
         </dependency>
 
+        <!-- LightAdmin -->
+        <dependency>
+            <groupId>org.lightadmin</groupId>
+            <artifactId>lightadmin</artifactId>
+            <version>1.2.0.BUILD-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.lightadmin</groupId>
+            <artifactId>lightadmin</artifactId>
+            <version>1.0.1.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
