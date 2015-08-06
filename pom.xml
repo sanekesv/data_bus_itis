@@ -33,6 +33,7 @@
         <jackson.version>2.5.0</jackson.version>
         <spring.agent>2.5.6</spring.agent>
         <spring-security-crypto.version>3.2.3.RELEASE</spring-security-crypto.version>
+        <lightadmin.version>1.2.0.BUILD-SNAPSHOT</lightadmin.version>
     </properties>
 
     <name>authorization</name>
@@ -202,14 +203,14 @@
             <dependency>
                 <groupId>org.lightadmin</groupId>
                 <artifactId>lightadmin</artifactId>
-                <version>1.2.0.BUILD-SNAPSHOT</version>
+                <version>${lightadmin.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.lightadmin</groupId>
-                <artifactId>lightadmin</artifactId>
-                <version>1.0.0.M2</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.lightadmin</groupId>-->
+                <!--<artifactId>light-logging-configurer</artifactId>-->
+                <!--<version>1.0.0.RC1</version>-->
+            <!--</dependency>-->
 
         </dependencies>
     </dependencyManagement>

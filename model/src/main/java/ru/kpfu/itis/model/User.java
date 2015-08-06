@@ -128,4 +128,5 @@ public class User implements AuthUser {
     public void setEntranceYear(Long entranceYear) {
         this.entranceYear = entranceYear;
     }
+
 }
