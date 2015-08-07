@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
+import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {"ru.kpfu.itis.model"})
@@ -31,11 +32,13 @@ public class PersistenceConfig {
         vendorAdapter.setShowSql(true);
         vendorAdapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQL9Dialect");
 
-
+        final Properties jpaProperties = new Properties();
+        jpaProperties.setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("ru.kpfu.itis.model");
         factory.setDataSource(dataSource);
+        factory.setJpaProperties(jpaProperties);
         factory.afterPropertiesSet();
 
         return factory.getObject();

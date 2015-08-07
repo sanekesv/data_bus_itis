@@ -99,7 +99,11 @@
         <dependency>
             <groupId>org.lightadmin</groupId>
             <artifactId>lightadmin</artifactId>
-            <version>1.0.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.lightadmin</groupId>
+            <artifactId>light-logging-configurer</artifactId>
         </dependency>
 
     </dependencies>

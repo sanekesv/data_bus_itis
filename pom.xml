@@ -33,7 +33,8 @@
         <jackson.version>2.5.0</jackson.version>
         <spring.agent>2.5.6</spring.agent>
         <spring-security-crypto.version>3.2.3.RELEASE</spring-security-crypto.version>
-        <lightadmin.version>1.2.0.BUILD-SNAPSHOT</lightadmin.version>
+        <lightadmin.version>1.1.0.BUILD-SNAPSHOT</lightadmin.version>
+        <light-logging-configurer.version>1.0.0.BUILD-SNAPSHOT</light-logging-configurer.version>
     </properties>
 
     <name>authorization</name>
@@ -199,18 +200,16 @@
                 <version>2.6.10</version>
             </dependency>
 
-            <!-- LightAdmin -->
             <dependency>
                 <groupId>org.lightadmin</groupId>
                 <artifactId>lightadmin</artifactId>
                 <version>${lightadmin.version}</version>
             </dependency>
-
-            <!--<dependency>-->
-                <!--<groupId>org.lightadmin</groupId>-->
-                <!--<artifactId>light-logging-configurer</artifactId>-->
-                <!--<version>1.0.0.RC1</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>org.lightadmin</groupId>
+                <artifactId>light-logging-configurer</artifactId>
+                <version>${light-logging-configurer.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -339,5 +338,24 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>lightadmin-nexus-releases</id>
+            <url>http://lightadmin.org/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>lightadmin-nexus-snapshots</id>
+            <url>http://lightadmin.org/nexus/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
