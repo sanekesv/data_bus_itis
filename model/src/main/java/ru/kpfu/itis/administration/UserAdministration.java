@@ -5,7 +5,10 @@ import org.lightadmin.api.config.builder.*;
 import org.lightadmin.api.config.unit.EntityMetadataConfigurationUnit;
 import org.lightadmin.api.config.unit.FieldSetConfigurationUnit;
 import org.lightadmin.api.config.unit.ScreenContextConfigurationUnit;
+import org.lightadmin.api.config.utils.EnumElement;
 import ru.kpfu.itis.model.User;
+
+import static org.lightadmin.api.config.utils.EnumElement.element;
 
 /**
  * Created by ermolaev.a on 05.08.2015.
@@ -30,6 +33,10 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("login").caption("Login")
                 .field("name").caption("Name")
                 .field("academicGroup").caption("Groups")
+                .field("entranceYear").caption("entrance year")
+                .field("gender").caption("GenderEnum")
+                .field("group").caption("UserGroup")
+                .field("role").caption("RoleEnum")
                 .build();
     }
 
@@ -38,6 +45,20 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("login").caption("Login")
                 .field("name").caption("Name")
                 .field("academicGroup").caption("Groups")
+                .field("entranceYear").caption("entrance year")
+                .field("gender").caption("GenderEnum").enumeration(
+                        element("MALE", "Male"),
+                        element("FEMALE", "Female"))
+                .field("group").caption("UserGroup").enumeration(
+                        element("ADMIN", "Admin"),
+                        element("ELDER", "Elder"),
+                        element("STUDENT", "Student")
+                )
+                .field("role").caption("RoleEnum").enumeration(
+                        element("STUDENT", "Student"),
+                        element("ADMIN", "Admin")
+                )
+                .field("password").caption("Password")
                 .build();
     }
 
@@ -46,7 +67,10 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("login").caption("Login")
                 .field("name").caption("Name")
                 .field("academicGroup").caption("Groups")
-
+                .field("entranceYear").caption("entrance year")
+                .field("gender").caption("GenderEnum")
+                .field("group").caption("UserGroup")
+                .field("role").caption("RoleEnum")
 //                .field("users").caption("Users")
                 .build();
     }
@@ -56,6 +80,13 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("login").caption("Login")
                 .field("name").caption("Name")
 //                .field("users").caption("Users")
+                .field("entranceYear").caption("entrance year")
+                .field("gender").caption("GenderEnum")
+                .field("group").caption("UserGroup")
+                .field("role").caption("RoleEnum")
+
                 .build();
     }
+
+
 }
