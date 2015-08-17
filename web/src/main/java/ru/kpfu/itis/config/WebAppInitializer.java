@@ -12,8 +12,8 @@ import javax.servlet.ServletException;
 import static org.lightadmin.core.util.LightAdminConfigurationUtils.LIGHT_ADMINISTRATION_BACK_TO_SITE_URL;
 import static org.lightadmin.core.util.LightAdminConfigurationUtils.LIGHT_ADMINISTRATION_BASE_PACKAGE;
 import static org.lightadmin.core.util.LightAdminConfigurationUtils.LIGHT_ADMINISTRATION_BASE_URL;
-import static org.lightadmin.logging.configurer.LoggingConfigurerSettings.LIGHT_CONFIGURER_BACK_TO_SITE_URL;
-import static org.lightadmin.logging.configurer.LoggingConfigurerSettings.LIGHT_CONFIGURER_BASE_URL;
+//import static org.lightadmin.logging.configurer.LoggingConfigurerSettings.LIGHT_CONFIGURER_BACK_TO_SITE_URL;
+//import static org.lightadmin.logging.configurer.LoggingConfigurerSettings.LIGHT_CONFIGURER_BASE_URL;
 
 @Order(1)
 public class WebAppInitializer extends
@@ -54,8 +54,8 @@ public class WebAppInitializer extends
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.setInitParameter(LIGHT_ADMINISTRATION_BASE_URL, "/admin");
-        servletContext.setInitParameter(LIGHT_CONFIGURER_BASE_URL, "/logger");
-        servletContext.setInitParameter(LIGHT_CONFIGURER_BACK_TO_SITE_URL, "http://lightadmin.org");
+//        servletContext.setInitParameter(LIGHT_CONFIGURER_BASE_URL, "/logger");
+//        servletContext.setInitParameter(LIGHT_CONFIGURER_BACK_TO_SITE_URL, "http://lightadmin.org");
         servletContext.setInitParameter(LIGHT_ADMINISTRATION_BACK_TO_SITE_URL, "http://lightadmin.org");
         servletContext.setInitParameter(LIGHT_ADMINISTRATION_BASE_PACKAGE, "ru.kpfu.itis.administration");
 

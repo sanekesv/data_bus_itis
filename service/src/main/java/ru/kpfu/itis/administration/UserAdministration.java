@@ -6,6 +6,7 @@ import org.lightadmin.api.config.unit.EntityMetadataConfigurationUnit;
 import org.lightadmin.api.config.unit.FieldSetConfigurationUnit;
 import org.lightadmin.api.config.unit.ScreenContextConfigurationUnit;
 import org.lightadmin.api.config.utils.EnumElement;
+import ru.kpfu.itis.administration.listener.UserEventListener;
 import ru.kpfu.itis.model.User;
 
 import static org.lightadmin.api.config.utils.EnumElement.element;
@@ -19,6 +20,7 @@ public class UserAdministration extends AdministrationConfiguration<User> {
         return configurationBuilder.nameField("name")
                 .singularName("User")
                 .pluralName("Users")
+                .repositoryEventListener(UserEventListener.class)
                 .build();
     }
 

@@ -205,11 +205,11 @@
                 <artifactId>lightadmin</artifactId>
                 <version>${lightadmin.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.lightadmin</groupId>
-                <artifactId>light-logging-configurer</artifactId>
-                <version>${light-logging-configurer.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.lightadmin</groupId>-->
+                <!--<artifactId>light-logging-configurer</artifactId>-->
+                <!--<version>${light-logging-configurer.version}</version>-->
+            <!--</dependency>-->
 
         </dependencies>
     </dependencyManagement>
