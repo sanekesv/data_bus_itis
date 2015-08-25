@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="
+                       http://www.liquibase.org/xml/ns/dbchangelog
+                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20150825_1120" author="aminibaev">
+        <sql>
+            INSERT INTO groups (id, title) VALUES (-1, 'Группа анонимного пользователя')
+        </sql>
+        <sql>
+            INSERT INTO users (name, password, role, login, salt, gender, entrance_year, user_group, academic_group_id)
+            VALUES ('Анонимный пользователь', 'bdc87b9c894da5168059e00ebffb9077', 3, '1234', NULL, 2000, NULL, 4, -1);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
