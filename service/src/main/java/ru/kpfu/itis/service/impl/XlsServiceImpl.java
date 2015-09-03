@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
+import ru.kpfu.itis.model.enums.RoleEnum;
 import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.itis.repository.GroupRepository;
 import ru.kpfu.itis.repository.UserRepository;
@@ -71,7 +72,7 @@ public class XlsServiceImpl implements XlsService {
                 String unencrypted = PasswordHelper.generatePassword();
                 String password = PasswordHelper.encryptForGenerated(unencrypted, user.getSalt());
                 user.setPassword(password);
-                user.setGroup(UserGroup.STUDENT);
+                user.setRole(RoleEnum.STUDENT);
                 unregisteredUsers.add(user);
             }
         } catch (Exception e) {

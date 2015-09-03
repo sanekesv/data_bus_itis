@@ -1,6 +1,7 @@
 package ru.kpfu.itis.util;
 
 import ru.kpfu.itis.model.User;
+import ru.kpfu.itis.model.enums.RoleEnum;
 import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.itis.model.form.RegistrationForm;
 import ru.kpfu.jbl.auth.util.PasswordHelper;
@@ -15,7 +16,7 @@ public class FormMappers {
         user.setName(form.getName());
         user.setSalt(PasswordHelper.generateSalt());
         user.setPassword(PasswordHelper.encrypt(form.getPassword(), user.getSalt()));
-        user.setGroup(UserGroup.STUDENT);
+        user.setRole(RoleEnum.STUDENT);
         return user;
     }
 }

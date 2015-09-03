@@ -20,28 +20,22 @@ public class User implements AuthUser {
 
     private String login;
 
-    private String name;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = true, name = "academic_group_id", referencedColumnName = "id")
-    private AcademicGroup academicGroup;
-
     private String password;
 
     private RoleEnum role;
 
     private String salt;
 
+    private String name;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "user_group")
-    private UserGroup group;
+    @ManyToOne
+    @JoinColumn(nullable = true, name = "academic_group_id", referencedColumnName = "id")
+    private AcademicGroup academicGroup;
 
     private GenderEnum gender;
 
     @Column(name = "entrance_year")
     private Long entranceYear;
-
 
     public Long getId() {
         return id;
@@ -59,14 +53,34 @@ public class User implements AuthUser {
         this.login = login;
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
 
     @Override
+    @Transient
     public String getUserRole() {
-        return group == null ? null : group.name();
+        return role == null ? null : role.name();
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEnum role) {
+        this.role = role;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getName() {
@@ -85,35 +99,7 @@ public class User implements AuthUser {
         this.academicGroup = academicGroup;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public RoleEnum getRole() {
-        return role;
-    }
-
-    public void setRole(RoleEnum role) {
-        this.role = role;
-    }
-
-    @Override
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public UserGroup getGroup() {
-        return group;
-    }
-
-    public void setGroup(UserGroup group) {
-        this.group = group;
-    }
-
+    @Transient
     public GenderEnum getGender() {
         return gender;
     }
@@ -130,4 +116,3 @@ public class User implements AuthUser {
         this.entranceYear = entranceYear;
     }
 }
-

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.form.RegistrationForm;
+import ru.kpfu.itis.response.MyResponse;
 import ru.kpfu.jbl.auth.response.UserResponse;
 import ru.kpfu.jbl.auth.service.UserServiceAuth;
 
@@ -23,4 +24,6 @@ public interface UserService extends UserServiceAuth {
     List<User> findUsersByGroup(String group);
 
     List<AcademicGroup> getAllGroups();
+
+    MyResponse updateUser(User user);
 }

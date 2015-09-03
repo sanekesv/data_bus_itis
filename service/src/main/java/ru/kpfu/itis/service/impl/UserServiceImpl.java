@@ -11,6 +11,7 @@ import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.itis.model.form.RegistrationForm;
 import ru.kpfu.itis.repository.GroupRepository;
 import ru.kpfu.itis.repository.UserRepository;
+import ru.kpfu.itis.response.MyResponse;
 import ru.kpfu.itis.service.UserService;
 import ru.kpfu.itis.util.FormMappers;
 import ru.kpfu.jbl.auth.domain.AuthUser;
@@ -32,9 +33,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByLogin(String login) {
         User user = userRepository.findOneByLogin(login);
-        if (user.getRole() == null || user.getGroup() == null) {
+        if (user.getRole() == null) {
             user.setRole(RoleEnum.STUDENT);
-            user.setGroup(UserGroup.STUDENT);
             user = userRepository.save(user);
         }
         return user;
@@ -91,4 +91,13 @@ public class UserServiceImpl implements UserService {
     public List<AcademicGroup> getAllGroups() {
         return Lists.newArrayList(groupRepository.findAll());
     }
+
+    @Override
+    public MyResponse updateUser(User user) {
+        MyResponse myResponse = new MyResponse(null);
+        userRepository.save(user);
+        myResponse.setStatus(true);
+        return myResponse;
+    }
+
 }
