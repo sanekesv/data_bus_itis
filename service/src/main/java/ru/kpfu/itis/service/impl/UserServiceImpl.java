@@ -33,9 +33,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByLogin(String login) {
         User user = userRepository.findOneByLogin(login);
-        if (user.getRole() == null || user.getGroup() == null) {
+        if (user.getRole() == null) {
             user.setRole(RoleEnum.STUDENT);
-            user.setGroup(UserGroup.STUDENT);
             user = userRepository.save(user);
         }
         return user;

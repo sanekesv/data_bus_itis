@@ -32,10 +32,6 @@ public class User implements AuthUser {
     @JoinColumn(nullable = true, name = "academic_group_id", referencedColumnName = "id")
     private AcademicGroup academicGroup;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "user_group")
-    private UserGroup group;
-
     private GenderEnum gender;
 
     @Column(name = "entrance_year")
@@ -64,7 +60,7 @@ public class User implements AuthUser {
     @Override
     @Transient
     public String getUserRole() {
-        return group == null ? null : group.name();
+        return role == null ? null : role.name();
     }
 
     public void setPassword(String password) {
@@ -101,15 +97,6 @@ public class User implements AuthUser {
 
     public void setAcademicGroup(AcademicGroup academicGroup) {
         this.academicGroup = academicGroup;
-    }
-
-    @Transient
-    public UserGroup getGroup() {
-        return group;
-    }
-
-    public void setGroup(UserGroup group) {
-        this.group = group;
     }
 
     @Transient
