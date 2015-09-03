@@ -1,9 +1,7 @@
 package ru.kpfu.itis.model;
 
 
-import ru.kpfu.itis.model.enums.GenderEnum;
 import ru.kpfu.itis.model.enums.RoleEnum;
-import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.jbl.auth.domain.AuthUser;
 
 import javax.persistence.*;
@@ -31,8 +29,6 @@ public class User implements AuthUser {
     @ManyToOne
     @JoinColumn(nullable = true, name = "academic_group_id", referencedColumnName = "id")
     private AcademicGroup academicGroup;
-
-    private GenderEnum gender;
 
     @Column(name = "entrance_year")
     private Long entranceYear;
@@ -97,15 +93,6 @@ public class User implements AuthUser {
 
     public void setAcademicGroup(AcademicGroup academicGroup) {
         this.academicGroup = academicGroup;
-    }
-
-    @Transient
-    public GenderEnum getGender() {
-        return gender;
-    }
-
-    public void setGender(GenderEnum gender) {
-        this.gender = gender;
     }
 
     public Long getEntranceYear() {
