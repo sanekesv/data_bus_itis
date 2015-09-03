@@ -17,6 +17,9 @@ public class RegFormValidator {
         if (rf.getPassword() == null || rf.getPassword().isEmpty()) {
             errors.rejectValue("password", null, "Password is empty");
         }
+        if (rf.getPassword().length() > 31){
+            errors.rejectValue("password", null, "Your password is too long.");
+        }
         if (rf.getLogin() == null || rf.getLogin().isEmpty()) {
             errors.rejectValue("login", null, "Login is empty");
         }
