@@ -6,6 +6,7 @@
                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
     <changeSet author="sanekesv" id="20150904_2000">
+        <dropColumn tableName="users" columnName="gender"/>
         <sql>
             UPDATE users SET role=1 WHERE id=1050
         </sql>

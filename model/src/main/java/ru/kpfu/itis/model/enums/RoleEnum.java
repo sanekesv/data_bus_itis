@@ -1,11 +1,11 @@
 package ru.kpfu.itis.model.enums;
 
 public enum RoleEnum {
+    STUDENT("Студент", 0),
     ADMIN("Администратор", 1),
-    ELDER("Староста", 2),
-    STUDENT("Студент", 3),
-    ANONYMOUS("Анонимный пользователь", 4),
-    TEACHER("Учитель", 5);
+    ANONYMOUS("Анонимный пользователь", 2),
+    ELDER("Староста", 3),
+    TEACHER("Учитель", 4);
     String title;
     int level;
 

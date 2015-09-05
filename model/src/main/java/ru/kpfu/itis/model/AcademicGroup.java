@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "groups")
 public class AcademicGroup {
 
-    @OneToMany(mappedBy = "academicGroup")
+    @OneToMany(mappedBy = "academicGroup", cascade = CascadeType.ALL)
     private List<User> users;
 
     @Id
