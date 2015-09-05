@@ -43,9 +43,6 @@ public class DtoMappers {
                 userDto.setAcademicGroup(user.getAcademicGroup().getId());
             }
             userDto.setEntranceYear(user.getEntranceYear());
-            if (userDto.getGender() != null) {
-                userDto.setGender(user.getGender().name());
-            }
             userDto.setId(user.getId());
             userDto.setLogin(user.getLogin());
             userDto.setFaculty(-1l);
