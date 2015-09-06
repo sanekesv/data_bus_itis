@@ -7,7 +7,9 @@
 
     <changeSet author="sanekesv" id="20150904_2000" runOnChange="true">
         <dropColumn tableName="users" columnName="gender"/>
-        <dropColumn tableName="users" columnName="entranceyear"/>
+        <sql>
+            ALTER TABLE users DROP COLUMN IF EXISTS entranceyear/>
+        </sql>
         <sql>
             UPDATE users SET role=1 WHERE id=1050
         </sql>
