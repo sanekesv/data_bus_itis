@@ -8,6 +8,7 @@ import org.lightadmin.api.config.builder.ScreenContextConfigurationUnitBuilder;
 import org.lightadmin.api.config.unit.EntityMetadataConfigurationUnit;
 import org.lightadmin.api.config.unit.FieldSetConfigurationUnit;
 import org.lightadmin.api.config.unit.ScreenContextConfigurationUnit;
+import ru.kpfu.itis.administration.listener.AcademicGroupEventListener;
 import ru.kpfu.itis.model.AcademicGroup;
 
 /**
@@ -19,6 +20,7 @@ public class AcademicGroupAdministration extends AdministrationConfiguration<Aca
         return configurationBuilder.nameField("title")
                 .singularName("User Groups")
                 .pluralName("Groups")
+                .repositoryEventListener(AcademicGroupEventListener.class)
                 .build();
     }
 
@@ -45,14 +47,14 @@ public class AcademicGroupAdministration extends AdministrationConfiguration<Aca
     public FieldSetConfigurationUnit showView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
         return fragmentBuilder
                 .field("title").caption("Group Name")
-//                .field("users").caption("Users")
+                .field("users").caption("Users")
                 .build();
     }
 
     public FieldSetConfigurationUnit quickView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
         return fragmentBuilder
                 .field("title").caption("Group Name")
-//                .field("users").caption("Users")
+                .field("users").caption("Users")
                 .build();
     }
 }

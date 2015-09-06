@@ -5,7 +5,6 @@ import org.lightadmin.api.config.builder.*;
 import org.lightadmin.api.config.unit.EntityMetadataConfigurationUnit;
 import org.lightadmin.api.config.unit.FieldSetConfigurationUnit;
 import org.lightadmin.api.config.unit.ScreenContextConfigurationUnit;
-import org.lightadmin.api.config.utils.EnumElement;
 import ru.kpfu.itis.administration.listener.UserEventListener;
 import ru.kpfu.itis.model.User;
 
@@ -45,12 +44,13 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("login").caption("Login")
                 .field("name").caption("Name")
                 .field("academicGroup").caption("Groups")
-                .field("entranceYear").caption("entrance year")
+                .field("entranceYear").caption("Entrance year")
                 .field("role").caption("RoleEnum").enumeration(
                         element("STUDENT", "Student"),
                         element("ADMIN", "Admin")
                 )
-                .field("password").caption("Password")
+                .field("password").caption("Password (Please enter a password < 32 characters) ")
+                .field("salt").caption("Salt (Please don't touch this field)")
                 .build();
     }
 
@@ -61,7 +61,6 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("academicGroup").caption("Groups")
                 .field("entranceYear").caption("entrance year")
                 .field("role").caption("RoleEnum")
-//                .field("users").caption("Users")
                 .build();
     }
 
@@ -69,10 +68,8 @@ public class UserAdministration extends AdministrationConfiguration<User> {
         return fragmentBuilder
                 .field("login").caption("Login")
                 .field("name").caption("Name")
-//                .field("users").caption("Users")
                 .field("entranceYear").caption("entrance year")
                 .field("role").caption("RoleEnum")
-
                 .build();
     }
 
