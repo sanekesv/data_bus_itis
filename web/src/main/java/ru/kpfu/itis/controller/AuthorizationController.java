@@ -20,8 +20,7 @@ public class AuthorizationController {
     @ApiOperation(httpMethod = "POST", value = "Proxy method for auth: really we use POST to /login. be careful")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String authenticatedWithLoginPassword(@RequestParam String username, @RequestParam String password) {
-        System.out.println("dsadfas");
-        return null;
+        return "redirect:/register";
     }
 
     @ApiOperation(httpMethod = "POST", value = "Authorization with token")
