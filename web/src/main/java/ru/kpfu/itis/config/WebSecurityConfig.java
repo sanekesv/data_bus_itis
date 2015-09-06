@@ -22,7 +22,7 @@ import ru.kpfu.jbl.auth.ep.RestAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebMvcSecurity
-@Import(value = {AuthSecurityModuleConfig.class, EncacheTokenServiceConfig.class})
+@Import(value = {AuthSecurityModuleConfig.class, MD5ProvidersConfig.class,EncacheTokenServiceConfig.class})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
