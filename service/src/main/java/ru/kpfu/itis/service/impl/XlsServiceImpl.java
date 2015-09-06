@@ -11,9 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.enums.RoleEnum;
-import ru.kpfu.itis.model.enums.UserGroup;
+import ru.kpfu.itis.report.UsersDumpReport;
 import ru.kpfu.itis.repository.GroupRepository;
 import ru.kpfu.itis.repository.UserRepository;
+import ru.kpfu.itis.service.AcademicGroupService;
 import ru.kpfu.itis.service.XlsService;
 import ru.kpfu.itis.util.CommonUtil;
 import ru.kpfu.itis.util.XlsUtil;
@@ -29,6 +30,9 @@ public class XlsServiceImpl implements XlsService {
 
     @Autowired
     GroupRepository groupRepository;
+
+    @Autowired
+    AcademicGroupService groupService;
 
     @Transactional
     @Override
@@ -113,6 +117,12 @@ public class XlsServiceImpl implements XlsService {
         }
         userRepository.save(unregisteredUsers);
         return true;
+    }
+
+    @Override
+    public Workbook xlsUsersDump() {
+        UsersDumpReport usersDumpReport = new UsersDumpReport(userRepository, groupService);
+        return usersDumpReport.build();
     }
 
 

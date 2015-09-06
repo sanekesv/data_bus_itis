@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u.login FROM User u")
     List<String> getAllUserLogins();
+
+    List<User> findByAcademicGroupOrderByNameAsc(String group);
 }

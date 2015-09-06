@@ -43,7 +43,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "Api Довольный Студент",
+                "Api Шины",
                 "Примеры запросов. API v1",
                 "Terms..",
                 "JetBrains email here",

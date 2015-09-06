@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.model.AcademicGroup;
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.enums.RoleEnum;
-import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.itis.model.form.RegistrationForm;
 import ru.kpfu.itis.repository.GroupRepository;
 import ru.kpfu.itis.repository.UserRepository;

@@ -12,4 +12,5 @@ public interface XlsService {
 
     public boolean saveUsers(MultipartFile file);
 
+    Workbook xlsUsersDump();
 }

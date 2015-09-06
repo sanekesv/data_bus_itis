@@ -46,7 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 antMatchers("/api/*").permitAll().
                 antMatchers("/registration").permitAll().
                 antMatchers("/api/v1/admin/**").hasAnyRole("ADMIN").
-                antMatchers("/api/v1/**").hasAnyRole("STUDENT", "ADMIN").
+                antMatchers("/api/v1/**").hasAnyRole("STUDENT", "ADMIN", "TEACHER", "ELDER").
+                antMatchers("/download/**").hasAnyRole("ADMIN").
                 and().
                 exceptionHandling()
                 .authenticationEntryPoint(unauthorizedEntryPoint)

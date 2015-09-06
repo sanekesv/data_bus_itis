@@ -2,7 +2,6 @@ package ru.kpfu.itis.util;
 
 import ru.kpfu.itis.model.User;
 import ru.kpfu.itis.model.enums.RoleEnum;
-import ru.kpfu.itis.model.enums.UserGroup;
 import ru.kpfu.itis.model.form.RegistrationForm;
 import ru.kpfu.jbl.auth.util.PasswordHelper;
 

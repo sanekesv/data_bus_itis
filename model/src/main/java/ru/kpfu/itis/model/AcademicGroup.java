@@ -1,7 +1,6 @@
 package ru.kpfu.itis.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ import java.util.List;
 public class AcademicGroup {
 
     @OneToMany(mappedBy = "academicGroup", cascade = CascadeType.ALL)
-    private List<User> users = new ArrayList<>();
+    private List<User> users;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "group_gen")
