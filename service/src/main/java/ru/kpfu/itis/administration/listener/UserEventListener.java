@@ -12,11 +12,11 @@ public class UserEventListener extends AbstractRepositoryEventListener<User> {
     @Override
     public void onBeforeSave(User user) {
         System.out.println("rere");
-        if(user.getEntranceYear()<2000){
+        if (user.getEntranceYear() < 2000) {
             user.setEntranceYear(null);
         }
         String pass = user.getPassword();
-        if (pass.length()<32) {
+        if (pass.length() < 32) {
             user.setSalt(PasswordHelper.generateSalt());
             user.setPassword(PasswordHelper.encrypt(pass, user.getSalt()));
         }
@@ -24,10 +24,15 @@ public class UserEventListener extends AbstractRepositoryEventListener<User> {
 
     @Override
     public void onBeforeCreate(User user) {
-        if(user.getEntranceYear()<2000){
+        if (user.getEntranceYear() < 2000) {
             user.setEntranceYear(null);
         }
         user.setSalt(PasswordHelper.generateSalt());
+        if (user.getPassword() == null || user.getPassword().length() == 0) {
+            user.setPassword(PasswordHelper.generatePassword());
+            user.setPassword(PasswordHelper.encryptForGenerated(user.getPassword(), user.getSalt()));
+            return;
+        }
         user.setPassword(PasswordHelper.encrypt(user.getPassword(), user.getSalt()));
     }
 }
