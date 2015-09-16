@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByLogin(String login) {
         User user = userRepository.findOneByLogin(login);
-        if (user.getRole() == null) {
+        if (user != null && user.getRole() == null) {
             user.setRole(RoleEnum.STUDENT);
             user = userRepository.save(user);
         }
@@ -43,6 +43,11 @@ public class UserServiceImpl implements UserService {
     public AuthUser saveUser(UserResponse userResponse) {
         //not implemented here: because of server
         return null;
+    }
+
+    @Override
+    public void afterLoginSuccess() {
+        //
     }
 
     @Override
