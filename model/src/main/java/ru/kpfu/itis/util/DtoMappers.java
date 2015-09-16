@@ -47,6 +47,7 @@ public class DtoMappers {
             userDto.setLogin(user.getLogin());
             userDto.setFaculty(-1l);
             userDto.setName(user.getName());
+            userDto.setRole(user.getUserRole());
             return userDto;
         }
     };
