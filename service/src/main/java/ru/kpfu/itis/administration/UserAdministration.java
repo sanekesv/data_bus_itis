@@ -46,8 +46,10 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("academicGroup").caption("Groups")
                 .field("entranceYear").caption("Entrance year")
                 .field("role").caption("RoleEnum").enumeration(
-                        element("STUDENT", "Student"),
-                        element("ADMIN", "Admin")
+                        element("STUDENT", "Студент"),
+                        element("ADMIN", "Администратор"),
+                        element("TEACHER", "Учитель"),
+                        element("ELDER", "Староста")
                 )
                 .field("password").caption("Password (Please enter a password < 32 characters) ")
                 .field("salt").caption("Salt (Please don't touch this field)")
@@ -59,7 +61,7 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("login").caption("Login")
                 .field("name").caption("Name")
                 .field("academicGroup").caption("Groups")
-                .field("entranceYear").caption("entrance year")
+                .field("entranceYear").caption("Entrance year")
                 .field("role").caption("RoleEnum")
                 .build();
     }
@@ -68,7 +70,7 @@ public class UserAdministration extends AdministrationConfiguration<User> {
         return fragmentBuilder
                 .field("login").caption("Login")
                 .field("name").caption("Name")
-                .field("entranceYear").caption("entrance year")
+                .field("entranceYear").caption("Entrance year")
                 .field("role").caption("RoleEnum")
                 .build();
     }
