@@ -5,7 +5,7 @@
     <h1>Авторизация</h1>
 
     <div id="login-tab-content">
-        <form class="login-form" action="/login" method="post">
+        <form class="login-form" action="/api/login" method="post">
             <#if error??>
                 <div class="error">
                     <i class="icon mdi-alert-error"></i>
