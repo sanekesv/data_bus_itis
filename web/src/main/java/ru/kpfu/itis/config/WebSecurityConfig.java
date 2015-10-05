@@ -24,9 +24,6 @@ import ru.kpfu.jbl.auth.ep.RestAuthenticationEntryPoint;
 @Configuration
 @EnableWebMvcSecurity
 @Import(value = {AuthSecurityModuleConfig.class, MD5ProvidersConfig.class,EncacheTokenServiceConfig.class})
-@ComponentScan(basePackages = {
-        "ru.kpfu.itis.auth"
-        })
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
