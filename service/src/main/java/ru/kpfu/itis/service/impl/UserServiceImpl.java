@@ -46,6 +46,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void afterLoginSuccess() {
+
+    }
+
+    @Override
     public Boolean matchPasswords(String pass1, String pass2) {
         return pass1.equals(pass2);
     }

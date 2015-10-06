@@ -11,7 +11,7 @@ public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String indexPage() {
-        return "redirect:/login";
+        return "redirect:/api/v1/user/current";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
