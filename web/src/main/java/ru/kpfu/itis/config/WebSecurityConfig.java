@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationProvider tokenAuthenticationProvider;
 
     private ObjectMapper mapper;
+    private static final String AUTH_URL = "/web/login";
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -62,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(unauthorizedEntryPoint)
                 .accessDeniedHandler((AccessDeniedHandler) unauthorizedEntryPoint);
 
-        http.addFilterBefore(new AuthenticationFilter(authenticationManager(), mapper), BasicAuthenticationFilter.class);
+        http.addFilterBefore(new AuthenticationFilter(authenticationManager(), mapper, AUTH_URL), BasicAuthenticationFilter.class);
     }
 
 
