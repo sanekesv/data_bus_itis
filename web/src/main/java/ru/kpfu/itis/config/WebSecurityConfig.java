@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,15 +41,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         AuthenticationEntryPoint unauthorizedEntryPoint = unauthorizedEntryPoint(mapper);
         http.
                 csrf().disable().
-                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
-                and().
+//                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
+//                and().
                 authorizeRequests().
-                antMatchers("/api/*").permitAll().
-                antMatchers("/registration").permitAll().
-                antMatchers("/api/v1/admin/**").hasAnyRole("ADMIN").
-                antMatchers("/api/v1/**").hasAnyRole("STUDENT", "ADMIN", "TEACHER", "ELDER").
-                antMatchers("/download/**").hasAnyRole("ADMIN").
-                and().
+                    antMatchers("/api/*").permitAll().
+                    antMatchers("/register").hasAnyRole("ADMIN").
+                    antMatchers("/api/v1/admin/**").hasAnyRole("ADMIN").
+                    antMatchers("/api/v1/**").hasAnyRole("STUDENT", "ADMIN", "TEACHER", "ELDER").
+                    antMatchers("/download/**").hasAnyRole("ADMIN").
+                    and().
+                formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                .and().
+                logout()
+                    .permitAll()
+                .and().
+
                 exceptionHandling()
                 .authenticationEntryPoint(unauthorizedEntryPoint)
                 .accessDeniedHandler((AccessDeniedHandler) unauthorizedEntryPoint);
