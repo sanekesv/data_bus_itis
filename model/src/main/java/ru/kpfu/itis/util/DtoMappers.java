@@ -15,40 +15,40 @@ import java.util.List;
  */
 public class DtoMappers {
 
-    public static UserResponse userToUserDto(User user) {
-        return USER_TO_USER_RESPONSE.apply(user);
-    }
+	public static UserResponse userToUserDto(User user) {
+		return USER_TO_USER_RESPONSE.apply(user);
+	}
 
-    public static <T, K> List<K> transform(List<T> items, Function<? super T, ? extends K> transformer) {
-        return Lists.newArrayList(Iterables.transform(items, transformer));
-    }
+	public static <T, K> List<K> transform(List<T> items, Function<? super T, ? extends K> transformer) {
+		return Lists.newArrayList(Iterables.transform(items, transformer));
+	}
 
+	public static final Function<AcademicGroup, GroupResponse> GROUP_TO_GROUP_RESPONSE = new Function<AcademicGroup, GroupResponse>() {
+		@Override
+		public GroupResponse apply(AcademicGroup academicGroup) {
+			GroupResponse groupResponse = new GroupResponse();
+			groupResponse.setId(academicGroup.getId());
+			groupResponse.setTitle(academicGroup.getTitle());
+			return groupResponse;
+		}
+	};
 
-    public static final Function<AcademicGroup, GroupResponse> GROUP_TO_GROUP_RESPONSE = new Function<AcademicGroup, GroupResponse>() {
-        @Override
-        public GroupResponse apply(AcademicGroup academicGroup) {
-            GroupResponse groupResponse = new GroupResponse();
-            groupResponse.setId(academicGroup.getId());
-            groupResponse.setTitle(academicGroup.getTitle());
-            return groupResponse;
-        }
-    };
+	public static final Function<User, UserResponse> USER_TO_USER_RESPONSE = new Function<User, UserResponse>() {
 
-    public static final Function<User, UserResponse> USER_TO_USER_RESPONSE = new Function<User, UserResponse>() {
-
-        @Override
-        public UserResponse apply(User user) {
-            UserResponse userDto = new UserResponse();
-            if (user.getAcademicGroup() != null) {
-                userDto.setAcademicGroup(user.getAcademicGroup().getId());
-            }
-            userDto.setEntranceYear(user.getEntranceYear());
-            userDto.setId(user.getId());
-            userDto.setLogin(user.getLogin());
-            userDto.setFaculty(-1l);
-            userDto.setName(user.getName());
-            userDto.setRole(user.getUserRole());
-            return userDto;
-        }
-    };
+		@Override
+		public UserResponse apply(User user) {
+			UserResponse userDto = new UserResponse();
+			if (user.getAcademicGroup() != null) {
+				userDto.setAcademicGroup(user.getAcademicGroup().getId());
+				userDto.setAcademicGroupName(user.getAcademicGroup().getTitle());
+			}
+			userDto.setEntranceYear(user.getEntranceYear());
+			userDto.setId(user.getId());
+			userDto.setLogin(user.getLogin());
+			userDto.setFaculty(-1l);
+			userDto.setName(user.getName());
+			userDto.setRole(user.getUserRole());
+			return userDto;
+		}
+	};
 }

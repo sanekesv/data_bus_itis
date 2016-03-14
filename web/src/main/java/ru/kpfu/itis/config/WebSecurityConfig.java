@@ -1,10 +1,8 @@
 package ru.kpfu.itis.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,13 +11,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
 import ru.kpfu.jbl.auth.AuthenticationFilter;
-import ru.kpfu.jbl.auth.config.*;
+import ru.kpfu.jbl.auth.config.AuthSecurityModuleConfig;
+import ru.kpfu.jbl.auth.config.EncacheTokenServiceConfig;
+import ru.kpfu.jbl.auth.config.MD5ProvidersConfig;
 import ru.kpfu.jbl.auth.ep.RestAuthenticationEntryPoint;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableWebMvcSecurity
