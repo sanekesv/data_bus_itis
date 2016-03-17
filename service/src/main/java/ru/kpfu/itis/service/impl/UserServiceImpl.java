@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void afterLoginSuccess() {
+    public void afterLoginSuccess(AuthUser currentUser) {
         //
     }
 
