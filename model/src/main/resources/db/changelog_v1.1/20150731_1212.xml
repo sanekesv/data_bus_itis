@@ -29,7 +29,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="20150731_1212_string_to_sql" author="aminibaev" runOnChange="true">
+    <changeSet id="20150731_1212_string_to_sql" author="sanekesv" runOnChange="true">
         <sql>
             INSERT INTO groups (title)
             SELECT DISTINCT u.academic_group

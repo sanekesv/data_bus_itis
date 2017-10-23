@@ -5,7 +5,7 @@
                        http://www.liquibase.org/xml/ns/dbchangelog
                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
-    <changeSet id="20150825_1120" author="aminibaev" runOnChange="true">
+    <changeSet id="20150825_1120" author="sanekesv" runOnChange="true">
         <sql>
             INSERT INTO groups (id, title) VALUES (-1, 'Группа анонимного пользователя')
         </sql>

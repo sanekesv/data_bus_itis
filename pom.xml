@@ -49,7 +49,7 @@
         <profile>
             <id>data-bus-ainur</id>
             <properties>
-                <tomcat.home>/Users/ainurminibaev/Documents/Develop/installation/apache-tomcat-7.0.50/</tomcat.home>
+                <tomcat.home>/Users/sanekesv/Documents/Develop/installation/apache-tomcat-7.0.50/</tomcat.home>
             </properties>
         </profile>
     </profiles>
